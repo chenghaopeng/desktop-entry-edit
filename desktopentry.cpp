@@ -15,53 +15,21 @@ namespace DesktopEntryItem {
     QString Item::getValue() {
         return this->value;
     }
-    void Item::setValue(QString value) {
-        this->value = value;
-    }
 
     //TextItem
     TextItem::TextItem(QString key, QString value) {
         this->key = key;
         this->value = value;
-        this->tag = "";
-    }
-    TextItem::TextItem(QString key, QString value, QString tag) {
-        this->key = key;
-        this->value = value;
-        this->tag = tag;
-    }
-    QString TextItem::getTag() {
-        return this->tag;
-    }
-    void TextItem::setTag(QString tag) {
-        this->tag = tag;
-    }
-    bool TextItem::itemKeyIs(QString key, QString tag) {
-        return this->key == key && this->tag == tag;
-    }
-    QString TextItem::toString() {
-        if (tag.size() == 0) {
-            return this->key + "=" + this->value;
-        }
-        else {
-            return this->key + "[" + this->tag + "]=" + this->value;
-        }
     }
 
     //BooleanItem
     BooleanItem::BooleanItem(QString key, QString value) {
         this->key = key;
-        this->setValue(value);
-    }
-    BooleanItem::BooleanItem(QString key, bool value) {
-        this->key = key;
-        this->setValue(value);
-    }
-    void BooleanItem::setValue(QString value) {
         this->value = value.toLower();
         this->bvalue = this->value == "true";
     }
-    void BooleanItem::setValue(bool value) {
+    BooleanItem::BooleanItem(QString key, bool value) {
+        this->key = key;
         this->bvalue = value;
         this->value = value? "true": "false";
     }
@@ -72,18 +40,12 @@ namespace DesktopEntryItem {
     //ListItem
     ListItem::ListItem(QString key, QString value) {
         this->key = key;
-        this->setValue(value);
-    }
-    ListItem::ListItem(QString key, QList<QString> value) {
-        this->key = key;
-        this->setValue(value);
-    }
-    void ListItem::setValue(QString value) {
         this->list.clear();
         this->list.append(value.split(";"));
         this->value = value;
     }
-    void ListItem::setValue(QList<QString> value) {
+    ListItem::ListItem(QString key, QList<QString> value) {
+        this->key = key;
         this->list.clear();
         this->list.append(value);
         this->value = list.join(";");
@@ -97,38 +59,23 @@ namespace DesktopEntryItem {
 DesktopEntry::DesktopEntry() {
     this->items.clear();
 }
-int DesktopEntry::getIndexByKey(QString key) {
+DesktopEntryItem::Item* DesktopEntry::getItemByKey(QString key) {
     for (int i=0; i<this->items.size(); ++i) {
-        if (this->items[i].itemKeyIs(key)) {
-            return i;
+        if (this->items[i]->itemKeyIs(key)) {
+            return this->items[i];
         }
     }
-    return -1;
-}
-int DesktopEntry::getIndexByKeyTag(QString key, QString tag) {
-    for (int i=0; i<this->items.size(); ++i) {
-        if (this->items[i].itemKeyIs(key, tag)) {
-            return i;
-        }
-    }
-    return -1;
+    return nullptr;
 }
 QString DesktopEntry::getValue(QString key) {
-    int i = this->getIndex(key);
-    return this->items[i].getValue();
-}
-QString DesktopEntry::getValue(QString key, QString tag) {
-
+    DesktopEntryItem::Item* item = DesktopEntry::getItemByKey(key);
+    return item->getValue();
 }
 bool DesktopEntry::getBooleanValue(QString key) {
-
+    DesktopEntryItem::BooleanItem* item = static_cast<DesktopEntryItem::BooleanItem*>(DesktopEntry::getItemByKey(key));
+    return item->getBooleanValue();
 }
 QList<QString> DesktopEntry::getListValue(QString key) {
-
-}
-int DesktopEntry::readFromFile(QString fileName) {
-
-}
-int DesktopEntry::writeToFile(QString fileName) {
-
+    DesktopEntryItem::ListItem* item = static_cast<DesktopEntryItem::ListItem*>(DesktopEntry::getItemByKey(key));
+    return item->getListValue();
 }
