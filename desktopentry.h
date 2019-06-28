@@ -3,11 +3,14 @@
 
 #include <QString>
 #include <QList>
+#include <QTextStream>
 
 namespace DesktopEntryItem {
     static const QString KEY_NAME = "Name", KEY_EXEC = "Exec", KEY_TYPE = "Type";
     static const QString KEY_TERMINAL = "Terminal", KEY_ICON = "Icon", KEY_GENERICNAME = "GenericName";
     static const QString KEY_COMMENT = "Comment", KEY_VERSION = "Version", KEY_CATEGORIES = "Categories";
+
+    int getTypeByKey(QString key);
 
     class Item {
     protected:
@@ -42,19 +45,26 @@ namespace DesktopEntryItem {
     public:
         ListItem(QString key, QString value);
         ListItem(QString key, QList<QString> value);
-        QList<QString> getListValue();
+        QList<QString>* getListValue();
     };
 }
 
 class DesktopEntry {
 private:
-    QList<DesktopEntryItem::Item*> items;
     DesktopEntryItem::Item* getItemByKey(QString key);
 public:
+    QList<DesktopEntryItem::Item*> items;
     DesktopEntry();
     QString getValue(QString key);
     bool getBooleanValue(QString key);
-    QList<QString> getListValue(QString key);
+    QList<QString>* getListValue(QString key);
+    void append(DesktopEntryItem::Item* item);
+};
+
+namespace DesktopEntryIO {
+    const static QString DESKTOP_ENTRY = "[Desktop Entry]";
+    bool saveToFile(DesktopEntry* desktopEntry, QString fileName);
+    bool readFromFile(DesktopEntry* desktopEntry, QString fileName);
 };
 
 #endif // DESKTOPENTRY_H
