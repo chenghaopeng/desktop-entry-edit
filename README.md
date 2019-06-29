@@ -1,12 +1,14 @@
 # Desktop Entry Edit
 
+[中文版本 README](README_zh-cn.md)
+
 ## What's this?
 
 A edit for GNU/Linux Desktop Entry files (*.desktop)
 
 Currently it's very simple, only a very limited number of items can be edited.
 
-## What Problem to Solve?
+## What problem to solve?
 
 1. Sometimes when installed a program, no desktop entry is installed at the same time. Then we need to set up one by ourself.
 
@@ -14,7 +16,7 @@ Currently it's very simple, only a very limited number of items can be edited.
 
 3. Finding out where desktop entry files are located in, and managering them, are terribly annoying.
 
-## Where to develop and run?
+## Where it developed and will run?
 
 Develop System: deepin (GNU/Linux Debian)
 
@@ -24,7 +26,7 @@ Language: C++
 
 Framework: Qt5.12
 
-## What I want it be in the future?
+## What I want it to be in the future?
 
 1. More items can be supported, and items with tag as well.
     
@@ -48,7 +50,7 @@ Framework: Qt5.12
 
 4. The further development of 3 is that, it can also be a default program manager, for it can edit all *.desktop files with item *MimeType*.
 
-5. **The future is promising. 未来可期！**
+5. **The future is promising.**
 
 ## What issues are known? 
 
