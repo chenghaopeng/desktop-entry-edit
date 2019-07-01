@@ -5,6 +5,20 @@
   <property name="enabled">
    <bool>true</bool>
   </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>631</width>
+    <height>624</height>
+   </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>631</width>
+    <height>624</height>
+   </size>
+  </property>
   <property name="font">
    <font>
     <family>Noto Sans CJK SC</family>
@@ -32,19 +46,6 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
-       <widget class="QPlainTextEdit" name="plainTextEdit">
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="tabChangesFocus">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label_2">
         <property name="text">
@@ -60,7 +61,7 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QComboBox" name="comboBox">
+       <widget class="QComboBox" name="cmbType">
         <item>
          <property name="text">
           <string>Application</string>
@@ -74,7 +75,7 @@
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QCheckBox" name="checkBox">
+       <widget class="QCheckBox" name="chkTerminal">
         <property name="text">
          <string>Open in terminal</string>
         </property>
@@ -94,19 +95,6 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="1">
-       <widget class="QPlainTextEdit" name="plainTextEdit_6">
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="tabChangesFocus">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
       <item row="6" column="0">
        <widget class="QLabel" name="label_7">
         <property name="text">
@@ -114,36 +102,10 @@
         </property>
        </widget>
       </item>
-      <item row="6" column="1">
-       <widget class="QPlainTextEdit" name="plainTextEdit_7">
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>31</height>
-         </size>
-        </property>
-        <property name="tabChangesFocus">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
       <item row="7" column="0">
        <widget class="QLabel" name="label_8">
         <property name="text">
          <string>Version:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="1">
-       <widget class="QPlainTextEdit" name="plainTextEdit_8">
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="tabChangesFocus">
-         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -157,20 +119,23 @@
       <item row="1" column="1">
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <widget class="QPlainTextEdit" name="plainTextEdit_2">
+         <widget class="QLineEdit" name="editExec">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>30</height>
+           </size>
+          </property>
           <property name="maximumSize">
            <size>
             <width>16777215</width>
             <height>30</height>
            </size>
           </property>
-          <property name="tabChangesFocus">
-           <bool>true</bool>
-          </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="btnExec">
           <property name="minimumSize">
            <size>
             <width>0</width>
@@ -193,20 +158,23 @@
       <item row="4" column="1">
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QPlainTextEdit" name="plainTextEdit_3">
+         <widget class="QLineEdit" name="editIcon">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>30</height>
+           </size>
+          </property>
           <property name="maximumSize">
            <size>
             <width>16777215</width>
             <height>30</height>
            </size>
           </property>
-          <property name="tabChangesFocus">
-           <bool>true</bool>
-          </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="btnIcon">
           <property name="minimumSize">
            <size>
             <width>0</width>
@@ -234,10 +202,10 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
-           <widget class="QListWidget" name="listWidget"/>
+           <widget class="QListWidget" name="lstCategories"/>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_3">
+           <widget class="QPushButton" name="btnRmCategory">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -260,7 +228,7 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QListView" name="listView">
+           <widget class="QListView" name="lstNotCategories">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -276,7 +244,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_4">
+           <widget class="QPushButton" name="btnAddCategory">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -298,6 +266,70 @@
         </item>
        </layout>
       </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="editName">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLineEdit" name="editGenericName">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QLineEdit" name="editComment">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QLineEdit" name="editVersion">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
     <item>
@@ -316,7 +348,7 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_4">
       <item>
-       <widget class="QPushButton" name="pushButton_6">
+       <widget class="QPushButton" name="btnNew">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -335,7 +367,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_5">
+       <widget class="QPushButton" name="btnOpen">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -354,7 +386,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_7">
+       <widget class="QPushButton" name="btnSave">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -373,7 +405,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_8">
+       <widget class="QPushButton" name="btnSaveAs">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -405,7 +437,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_9">
+       <widget class="QPushButton" name="btnReset">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -432,7 +464,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>686</width>
+     <width>631</width>
      <height>23</height>
     </rect>
    </property>
@@ -499,20 +531,25 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
-  <tabstop>plainTextEdit</tabstop>
-  <tabstop>plainTextEdit_2</tabstop>
-  <tabstop>pushButton</tabstop>
-  <tabstop>comboBox</tabstop>
-  <tabstop>checkBox</tabstop>
-  <tabstop>plainTextEdit_3</tabstop>
-  <tabstop>pushButton_2</tabstop>
-  <tabstop>plainTextEdit_6</tabstop>
-  <tabstop>plainTextEdit_7</tabstop>
-  <tabstop>plainTextEdit_8</tabstop>
-  <tabstop>listWidget</tabstop>
-  <tabstop>pushButton_3</tabstop>
-  <tabstop>listView</tabstop>
-  <tabstop>pushButton_4</tabstop>
+  <tabstop>editName</tabstop>
+  <tabstop>editExec</tabstop>
+  <tabstop>btnExec</tabstop>
+  <tabstop>cmbType</tabstop>
+  <tabstop>chkTerminal</tabstop>
+  <tabstop>editIcon</tabstop>
+  <tabstop>btnIcon</tabstop>
+  <tabstop>editGenericName</tabstop>
+  <tabstop>editComment</tabstop>
+  <tabstop>editVersion</tabstop>
+  <tabstop>lstCategories</tabstop>
+  <tabstop>btnRmCategory</tabstop>
+  <tabstop>lstNotCategories</tabstop>
+  <tabstop>btnAddCategory</tabstop>
+  <tabstop>btnNew</tabstop>
+  <tabstop>btnOpen</tabstop>
+  <tabstop>btnSave</tabstop>
+  <tabstop>btnSaveAs</tabstop>
+  <tabstop>btnReset</tabstop>
  </tabstops>
  <resources/>
  <connections/>
